@@ -414,7 +414,7 @@ Order By InventoryDate, CategoryName, ProductName;
 
 Create View vEmployeesByManager 
 With SchemaBinding As
-Select Top 10000 [Manager] = IIF(IsNull(Mgr.EmployeeId, 0) = 0, 'Gen Manager', Mgr.EmployeeFirstName + ' ' + Mgr.EmployeeLastName),
+Select Top 10000 [Manager] = IIF(IsNull(Mgr.EmployeeId, 0) = 0, 'No Manager', Mgr.EmployeeFirstName + ' ' + Mgr.EmployeeLastName),
 [Employee] =  Emp.EmployeeFirstName + ' ' + Emp.EmployeeLastName 
 From dbo.tblEmployees as Emp
 Left Join dbo.tblEmployees Mgr
@@ -430,7 +430,7 @@ Order By Manager, [Employee];
 
 Create View vInventoriesByProductsByCategoriesByEmployees 
 With SchemaBinding As
-Select Distinct Top 10000 dbo.tblCategories.CategoryID, dbo.tblCategories.CategoryName, dbo.tblProducts.ProductID, dbo.tblProducts.ProductName, dbo.tblProducts.UnitPrice, dbo.tblInventories.InventoryID, dbo.tblInventories.InventoryDate, dbo.tblInventories.[Count], dbo.tblEmployees.EmployeeID, [Employee] =  dbo.tblEmployees.EmployeeFirstName + ' ' + dbo.tblEmployees.EmployeeLastName, [Manager] = IIF(IsNull(Mgr.EmployeeId, 0) = 0, 'Gen Manager', Mgr.EmployeeFirstName + ' ' + Mgr.EmployeeLastName)
+Select Distinct Top 10000 dbo.tblCategories.CategoryID, dbo.tblCategories.CategoryName, dbo.tblProducts.ProductID, dbo.tblProducts.ProductName, dbo.tblProducts.UnitPrice, dbo.tblInventories.InventoryID, dbo.tblInventories.InventoryDate, dbo.tblInventories.[Count], dbo.tblEmployees.EmployeeID, [Employee] =  dbo.tblEmployees.EmployeeFirstName + ' ' + dbo.tblEmployees.EmployeeLastName, [Manager] = IIF(IsNull(Mgr.EmployeeId, 0) = 0, 'No Manager', Mgr.EmployeeFirstName + ' ' + Mgr.EmployeeLastName)
 From dbo.tblCategories
 Join dbo.tblProducts
 On dbo.tblCategories.CategoryID = dbo.tblProducts.CategoryID

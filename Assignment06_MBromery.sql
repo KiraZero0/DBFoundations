@@ -253,9 +253,6 @@ Create View vEmployees
 With Schemabinding As
 Select EmployeeID, EmployeeFirstName as [First Name], EmployeeLastName as [Last Name], ManagerID From dbo.tblEmployees;
 
-Alter View vEmployees As
-Select EmployeeName = EmployeeFirstName + ' ' + EmployeeLastName
-From tblEmployees;
 
 Create Table tblInventories
 ([InventoryID] [int] IDENTITY(1,1) NOT NULL
